@@ -67,6 +67,7 @@ function getData() {
       createListItem(item);
     });
     count = tasks.length;
+    counter.innerText = count;
   }
 }
 
