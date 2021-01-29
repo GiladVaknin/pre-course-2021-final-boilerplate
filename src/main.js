@@ -4,10 +4,10 @@ function addTask() {
   let counter = document.getElementById("counter");
 
   let newTask = {
-    Text: inputText.value,
-    Date: new Date().toISOString().slice(0, 19).replace("T", " "),
-    Priority: prioritySelector.value,
-    IsDone: false,
+    text: inputText.value,
+    date: new Date().toISOString().slice(0, 19).replace("T", " "),
+    priority: prioritySelector.value,
+    isDone: false,
   };
 
   tasks.push(newTask);
@@ -33,7 +33,7 @@ function isDone(doneButton) {
 }
 
 function sort() {
-  const sortedTasks = tasks.sort((a, b) => a.Priority - b.Priority);
+  const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
   addedTasks.innerHTML = "";
   sortedTasks.forEach((item) => {
     createListItem(item);
@@ -47,16 +47,16 @@ function createListItem(item) {
   let taskPriority = newElem("div", "todo-priority");
   let taskDate = newElem("div", "todo-created-at");
   let doneButton = newElem("button", "done-button");
-  taskText.innerText = item.Text;
-  taskPriority.innerText = item.Priority;
-  taskDate.innerText = item.Date;
-  doneButton.innerText = "undone";
+  taskText.innerText = item.text;
+  taskPriority.innerText = item.priority;
+  taskDate.innerText = item.date;
+  doneButton.innerText = item.isDone ? "done" : "undone";
   doneButton.addEventListener("click", function () {
     isDone(doneButton);
   });
   taskDiv.append(taskText, taskPriority, taskDate, doneButton);
   li.append(taskDiv);
-  addedTasks.prepend(li);
+  addedTasks.append(li);
 }
 
 function getData() {
