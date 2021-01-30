@@ -90,9 +90,27 @@ function deleteTask(e) {
   const target = e.target;
   if (target.className != "delete-button") return;
   else {
-    let t = target.closest("li");
+    let taskDeletedDate = target.closest("#todo-created-at");
+    console.log(taskDeletedDate);
+    let date = taskDeletedDate.innerText;
+    let afterDeleteTasks = [];
+    let lastRemove;
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].date !== date) {
+        afterDeleteTasks.push(tasks[i]);
+      } else {
+        lastRemove = tasks[i];
+      }
+    }
+    tasks = afterDeleteTasks;
+    setData();
+    let t = taskDeletedDate.closest("li");
     t.remove();
   }
+}
+
+function navbar() {
+  nav.hidden = !nav.hidden;
 }
 
 let tasks = [];
@@ -102,6 +120,10 @@ const controlSection = document.getElementById("control-section");
 const addButton = document.getElementById("add-button");
 const addedTasks = document.getElementById("List");
 const sortButton = document.getElementById("sort-button");
+let nav = document.getElementById("social-media-bar");
+nav.hidden = true;
+const navbarButton = document.getElementById("navbarButton");
+navbarButton.addEventListener("click", navbar);
 sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
 

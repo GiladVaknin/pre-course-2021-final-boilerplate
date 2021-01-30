@@ -12,7 +12,16 @@
     <title>My TODO List</title>
     <script src="utils.js"></script>
   </head>
-  <body>
+  <body><span class="navBar">
+    <i id="navbarButton"class="fas fa-toilet-paper"></i>
+    <ul id="social-media-bar">
+      <li><a href="https://github.com/GiladVaknin"><i class="fab fa-github"></i></a></li>
+      <li><a href="https://www.facebook.com/gilad.vaknin"><i class="fab fa-facebook"></i></a></li>
+      <li><a href="mailto:gilad418@gmail.com"><i class="fas fa-paper-plane"></i></a></li>
+
+
+    </ul>
+  </span>
     <section id="control-section">
       <h1 id="title">To Do List</h1>
       <h2>
@@ -21,11 +30,11 @@
       <input type="text" id="text-input" />
       <select id="priority-selector">
         <option value="" disabled selected hidden>Choose priority</option>
-        <option id="lowest">1</option>
-        <option id="low">2</option>
-        <option id="normal">3</option>
-        <option id="high">4</option>
-        <option id="highest">5</option>
+        <option id="option">1</i></option>
+        <option id="option">2</option>
+        <option id="option">3</option>
+        <option id="option">4</option>
+        <option id="option">5</option>
       </select>
       <button id="add-button">Add</button>
       <button id="sort-button">Sort</button>

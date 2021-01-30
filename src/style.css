@@ -25,7 +25,8 @@ body {
 #title {
   font-size: 13vh;
   font-family: "Coda Caption", sans-serif;
-  top: 5vh;
+  /* top: 5vh; */
+  margin-top: 0;
 }
 #priority-selector {
   font-family: "Coda Caption", sans-serif;
@@ -74,4 +75,20 @@ h2 i {
   text-align: center;
   align-items: center;
   box-sizing: content-box; */
+}
+#option {
+  text-align: center;
+  align-items: center;
+}
+.navBar {
+  position: fixed;
+  right: 0;
+  font-size: 10vh;
+}
+#social-media-bar {
+  font-size: 8vh;
+  list-style: none;
+}
+#social-media-bar i {
+  color: black;
 }
