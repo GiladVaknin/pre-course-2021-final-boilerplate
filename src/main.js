@@ -27,8 +27,12 @@ function newElem(type, className) {
 function isDone(doneButton) {
   if (doneButton.innerText === "undone") {
     doneButton.innerText = "done";
+    let emoji = newElem("i", "fas fa-poo");
+    doneButton.append(emoji);
   } else {
     doneButton.innerText = "undone";
+    let emoji = newElem("i", "fas fa-poop");
+    doneButton.append(emoji);
   }
 }
 
@@ -47,14 +51,21 @@ function createListItem(item) {
   let taskPriority = newElem("div", "todo-priority");
   let taskDate = newElem("div", "todo-created-at");
   let doneButton = newElem("button", "done-button");
+  let deleteButton = newElem("button", "delete-button");
+  deleteButton.innerText = "Delete Task";
+  deleteButton.addEventListener("click", function (e) {
+    deleteTask(e);
+  });
   taskText.innerText = item.text;
   taskPriority.innerText = item.priority;
   taskDate.innerText = item.date;
   doneButton.innerText = item.isDone ? "done" : "undone";
+  let emoji = newElem("i", "fas fa-poop");
+  doneButton.append(emoji);
   doneButton.addEventListener("click", function () {
     isDone(doneButton);
   });
-  taskDiv.append(taskText, taskPriority, taskDate, doneButton);
+  taskDiv.append(taskText, taskPriority, taskDate, doneButton, deleteButton);
   li.append(taskDiv);
   addedTasks.append(li);
 }
@@ -73,6 +84,15 @@ function getData() {
 
 function setData() {
   localStorage.setItem("my-todo", JSON.stringify(tasks));
+}
+
+function deleteTask(e) {
+  const target = e.target;
+  if (target.className != "delete-button") return;
+  else {
+    let t = target.closest("li");
+    t.remove();
+  }
 }
 
 let tasks = [];
