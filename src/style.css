@@ -82,19 +82,38 @@ h2 i {
 }
 .navBar {
   position: fixed;
-  right: 0;
+  right: 1vw;
   font-size: 10vh;
 }
 #social-media-bar {
-  font-size: 8vh;
+  font-size: 4vh;
   list-style: none;
 }
 #social-media-bar i {
   color: black;
+  opacity: 1;
 }
 #undo-button {
   position: fixed;
-  left: 0;
+  left: 1vw;
   bottom: 0;
   font-size: 8vh;
+}
+#removeAll-button {
+  position: fixed;
+  left: 1vw;
+  bottom: 10vh;
+  font-size: 8vh;
+}
+/* #social-media-bar i:hover { */
+/* color: #b41313; */
+/* } */
+#githubIcon:hover {
+  color: blueviolet;
+}
+#fbIcon:hover {
+  color: blue;
+}
+#mailIcon:hover {
+  color: red;
 }

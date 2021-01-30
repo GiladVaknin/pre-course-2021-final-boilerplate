@@ -1,7 +1,6 @@
 function addTask() {
   let inputText = document.getElementById("text-input");
   let prioritySelector = document.getElementById("priority-selector");
-  let counter = document.getElementById("counter");
 
   let newTask = {
     text: inputText.value,
@@ -25,19 +24,21 @@ function newElem(type, className) {
 }
 
 function isDone(doneButton) {
-  let t = target.closest("li");
+  let t = doneButton.closest("li");
   let taskDeletedDate = t.getElementsByClassName("todo-created-at");
   let date = taskDeletedDate[0].innerText;
-  taskFinder(date);
-  if (doneButton.innerText === "undone") {
-    doneButton.innerText = "done";
-    let emoji = newElem("i", "fas fa-poo");
-    doneButton.append(emoji);
-  } else {
+  let taskNumber = taskFinder(date);
+  if (tasks[taskNumber].isDone) {
     doneButton.innerText = "undone";
     let emoji = newElem("i", "fas fa-poop");
     doneButton.append(emoji);
+  } else {
+    doneButton.innerText = "done";
+    let emoji = newElem("i", "fas fa-poo");
+    doneButton.append(emoji);
   }
+  tasks[taskNumber].isDone = !tasks[taskNumber].isDone;
+  setData();
 }
 
 function sort() {
@@ -50,6 +51,7 @@ function sort() {
 
 function createListItem(item) {
   let li = newElem("li");
+  let taskSpan = newElem("span", "task-span");
   let taskDiv = newElem("div", "todo-container");
   let taskText = newElem("div", "todo-text");
   let taskPriority = newElem("div", "todo-priority");
@@ -69,13 +71,19 @@ function createListItem(item) {
   taskPriority.innerText = item.priority;
   taskDate.innerText = item.date;
   doneButton.innerText = item.isDone ? "done" : "undone";
-  let emoji = newElem("i", "fas fa-poop");
-  doneButton.append(emoji);
+  if (item.isDone) {
+    let emoji = newElem("i", "fas fa-poo");
+    doneButton.append(emoji);
+  } else {
+    let emoji = newElem("i", "fas fa-poop");
+    doneButton.append(emoji);
+  }
   doneButton.addEventListener("click", function () {
     isDone(doneButton);
   });
   taskDiv.append(taskText, taskPriority, taskDate, doneButton, deleteButton);
-  li.append(taskDiv);
+  taskSpan.append(taskDiv);
+  li.append(taskSpan);
   addedTasks.append(li);
 }
 
@@ -102,16 +110,10 @@ function deleteTask(e) {
     let t = target.closest("li");
     let taskDeletedDate = t.getElementsByClassName("todo-created-at");
     let date = taskDeletedDate[0].innerText;
-    let afterDeleteTasks = [];
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].date !== date) {
-        afterDeleteTasks.push(tasks[i]);
-      } else {
-        lastRemove = tasks[i];
-      }
-    }
-    tasks = afterDeleteTasks;
-
+    let taskNum = taskFinder(date);
+    lastRemove = tasks[taskNum];
+    tasks.splice(taskNum, 1);
+    counter.innerText = tasks.length;
     setData();
     t.remove();
   }
@@ -120,11 +122,13 @@ function deleteTask(e) {
 function navbar() {
   nav.hidden = !nav.hidden;
 }
+
 function undo() {
   createListItem(lastRemove);
   tasks.push(lastRemove);
   setData();
 }
+
 function taskFinder(date) {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].date === date) {
@@ -132,6 +136,22 @@ function taskFinder(date) {
     }
   }
   return;
+}
+
+function removeAll() {
+  addedTasks.innerHTML = "";
+  tasks = [];
+  count = 0;
+  counter.innerText = 0;
+  setData();
+}
+
+function searchTask() {
+  let search = document.createElement("input");
+  search.setAttribute("type", "search");
+  search = "dog";
+  search.list();
+  console.log(search);
 }
 
 let tasks = [];
@@ -144,11 +164,15 @@ const sortButton = document.getElementById("sort-button");
 const nav = document.getElementById("social-media-bar");
 const navbarButton = document.getElementById("navbarButton");
 const undoButton = document.getElementById("undo-button");
+const removeAllButton = document.getElementById("removeAll-button");
+let counter = document.getElementById("counter");
+
 let lastRemove;
 nav.hidden = true;
 navbarButton.addEventListener("click", navbar);
 sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
 undoButton.addEventListener("click", undo);
+removeAllButton.addEventListener("click", removeAll);
 
 getData();
