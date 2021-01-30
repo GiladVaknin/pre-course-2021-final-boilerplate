@@ -90,9 +90,10 @@ function deleteTask(e) {
   const target = e.target;
   if (target.className != "delete-button") return;
   else {
-    let taskDeletedDate = target.closest("#todo-created-at");
-    console.log(taskDeletedDate);
-    let date = taskDeletedDate.innerText;
+    let t = target.closest("li");
+    let taskDeletedDate = t.getElementsByClassName("todo-created-at");
+    console.log(taskDeletedDate[0].innerText);
+    let date = taskDeletedDate[0].innerText;
     let afterDeleteTasks = [];
     let lastRemove;
     for (let i = 0; i < tasks.length; i++) {
@@ -104,7 +105,6 @@ function deleteTask(e) {
     }
     tasks = afterDeleteTasks;
     setData();
-    let t = taskDeletedDate.closest("li");
     t.remove();
   }
 }
