@@ -92,10 +92,8 @@ function deleteTask(e) {
   else {
     let t = target.closest("li");
     let taskDeletedDate = t.getElementsByClassName("todo-created-at");
-    console.log(taskDeletedDate[0].innerText);
     let date = taskDeletedDate[0].innerText;
     let afterDeleteTasks = [];
-    let lastRemove;
     for (let i = 0; i < tasks.length; i++) {
       if (tasks[i].date !== date) {
         afterDeleteTasks.push(tasks[i]);
@@ -104,13 +102,18 @@ function deleteTask(e) {
       }
     }
     tasks = afterDeleteTasks;
+
     setData();
     t.remove();
+    console.log(lastRemove);
   }
 }
 
 function navbar() {
   nav.hidden = !nav.hidden;
+}
+function undo() {
+  createListItem(lastRemove);
 }
 
 let tasks = [];
@@ -120,11 +123,14 @@ const controlSection = document.getElementById("control-section");
 const addButton = document.getElementById("add-button");
 const addedTasks = document.getElementById("List");
 const sortButton = document.getElementById("sort-button");
-let nav = document.getElementById("social-media-bar");
-nav.hidden = true;
+const nav = document.getElementById("social-media-bar");
 const navbarButton = document.getElementById("navbarButton");
+const undoButton = document.getElementById("undo-button");
+let lastRemove;
+nav.hidden = true;
 navbarButton.addEventListener("click", navbar);
 sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
+undoButton.addEventListener("click", undo);
 
 getData();
