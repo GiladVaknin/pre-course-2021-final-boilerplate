@@ -54,16 +54,16 @@ h2 i {
   font-size: 40px;
 }
 .done-button {
-  color: #fede00;
-  background-color: black;
+  color: black;
+  background-color: #fede00;
   font-size: 20px;
   border: none;
   margin-left: 10px;
   margin-right: 10px;
 }
 .delete-button {
-  color: #fede00;
-  background-color: black;
+  color: black;
+  background-color: #fede00;
   font-size: 20px;
   border: none;
   margin-left: 10px;
@@ -96,6 +96,5 @@ h2 i {
   position: fixed;
   left: 0;
   bottom: 0;
-  font-size: 10vh;
-  /* background-color: #fede00; */
+  font-size: 8vh;
 }

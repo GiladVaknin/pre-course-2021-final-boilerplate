@@ -25,6 +25,10 @@ function newElem(type, className) {
 }
 
 function isDone(doneButton) {
+  let t = target.closest("li");
+  let taskDeletedDate = t.getElementsByClassName("todo-created-at");
+  let date = taskDeletedDate[0].innerText;
+  taskFinder(date);
   if (doneButton.innerText === "undone") {
     doneButton.innerText = "done";
     let emoji = newElem("i", "fas fa-poo");
@@ -52,10 +56,15 @@ function createListItem(item) {
   let taskDate = newElem("div", "todo-created-at");
   let doneButton = newElem("button", "done-button");
   let deleteButton = newElem("button", "delete-button");
-  deleteButton.innerText = "Delete Task";
-  deleteButton.addEventListener("click", function (e) {
-    deleteTask(e);
-  });
+  let deleteIcon = newElem("i", "fas fa-trash");
+  deleteButton.append(deleteIcon);
+  deleteButton.addEventListener(
+    "click",
+    function (e) {
+      deleteTask(e);
+    },
+    true
+  );
   taskText.innerText = item.text;
   taskPriority.innerText = item.priority;
   taskDate.innerText = item.date;
@@ -105,7 +114,6 @@ function deleteTask(e) {
 
     setData();
     t.remove();
-    console.log(lastRemove);
   }
 }
 
@@ -114,6 +122,16 @@ function navbar() {
 }
 function undo() {
   createListItem(lastRemove);
+  tasks.push(lastRemove);
+  setData();
+}
+function taskFinder(date) {
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].date === date) {
+      return i;
+    }
+  }
+  return;
 }
 
 let tasks = [];
