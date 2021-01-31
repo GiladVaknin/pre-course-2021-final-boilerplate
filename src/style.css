@@ -13,7 +13,7 @@ body {
 #view-section li {
   box-sizing: content-box;
   list-style: none;
-  padding: 2vh;
+  padding: 1rem;
   color: black;
   background-color: #fede00;
   opacity: 0.9;
@@ -32,7 +32,7 @@ body {
   font-size: 4vh;
   /* text-align: center; */
   font-family: "Coda Caption", sans-serif;
-  padding-top: 0;
+  padding-top: 1rem;
 }
 #priority-selector {
   font-family: "Coda Caption", sans-serif;
@@ -96,7 +96,7 @@ h2 i {
   color: white;
 }
 #social-media-bar {
-  font-size: 4vh;
+  font-size: 5vh;
   list-style: none;
 }
 #social-media-bar i {
@@ -162,6 +162,26 @@ h2 i {
 }
 #motivation-charger :hover {
   color: chartreuse;
+}
+#video {
+  width: 80%;
+  height: 80%;
+  left: 10vw;
+  right: 10vw;
+  position: fixed;
+  background-color: black;
+  /* align-items: center; */
+  bottom: 10vh;
+}
+#close-video {
+  padding-top: 2px;
+  margin-right: 0;
+}
+
+#motivation-video {
+  width: 90%;
+  height: 90%;
+  align-items: center;
 }
 
 @media screen and (max-width: 830px) {

@@ -126,6 +126,7 @@ function navbar() {
 function undo() {
   createListItem(lastRemove);
   tasks.push(lastRemove);
+  counter.innerText = count;
   setData();
 }
 
@@ -161,6 +162,32 @@ function checkPercents() {
   }
 }
 
+function videoOpener() {
+  addedTasks.hidden = true;
+  let videoSpan = newElem("span", "video");
+  let video = newElem("iframe", "motivation-video");
+  let closeVideoButton = newElem("button", "close-video");
+  let closeIcon = newElem("i", "fas fa-window-close");
+  closeVideoButton.append(closeIcon);
+  video.setAttribute("src", "https://www.youtube.com/embed/V3WrCx3mwNo");
+  video.style.width = "640px";
+  video.style.height = "480px";
+  video.setAttribute("draggable", "true");
+  videoSpan.appendChild(video);
+  videoSpan.append(closeVideoButton);
+  document.body.append(videoSpan);
+  closeVideoButton.addEventListener("click", () => {
+    videoSpan.remove();
+    addedTasks.hidden = false;
+  });
+  video.addEventListener("dragend", fullScreen);
+}
+
+function fullScreen() {
+  this.style.height = "700px";
+  this.style.width = "900px";
+}
+
 let tasks = [];
 let count = 0;
 
@@ -173,6 +200,7 @@ const navbarButton = document.getElementById("navbarButton");
 const undoButton = document.getElementById("undo-button");
 const removeAllButton = document.getElementById("removeAll-button");
 const percentDone = document.getElementById("user-check");
+const videoOpen = document.getElementById("motivation-charger");
 // const searchBar = document.getElementById("searchBar");
 let counter = document.getElementById("counter");
 
@@ -184,6 +212,7 @@ addButton.addEventListener("click", addTask);
 undoButton.addEventListener("click", undo);
 removeAllButton.addEventListener("click", removeAll);
 percentDone.addEventListener("click", checkPercents);
+videoOpen.addEventListener("click", videoOpener);
 // `searchBar.addEventListener("keyup", searchTask);
 
 getData();
