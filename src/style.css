@@ -9,6 +9,12 @@ body {
   background-position: center;
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
+}
+#view-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #view-section li {
   box-sizing: content-box;
@@ -17,6 +23,8 @@ body {
   color: black;
   background-color: #fede00;
   opacity: 0.9;
+  z-index: 2;
+  width: 100%;
 }
 #view-section li div {
   font-weight: bolder;
@@ -27,12 +35,12 @@ body {
   font-size: 12vh;
   font-family: "Coda Caption", sans-serif;
   margin-top: 0;
+  margin-bottom: 0;
 }
 #sub-title {
   font-size: 4vh;
   /* text-align: center; */
   font-family: "Coda Caption", sans-serif;
-  padding-top: 1rem;
 }
 #priority-selector {
   font-family: "Coda Caption", sans-serif;
@@ -47,15 +55,17 @@ body {
 }
 
 #list {
-  margin-top: auto;
+  width: 100%;
 }
 .todo-container {
   display: inline-flex;
   margin-left: auto;
 }
+
 .todo-container div {
-  padding-left: 20px;
+  padding: 5px;
 }
+
 h2 i {
   font-size: 40px;
 }
@@ -101,7 +111,7 @@ h2 i {
 }
 #social-media-bar i {
   color: black;
-  opacity: 1;
+  z-index: 10;
 }
 #undo-button {
   position: fixed;

@@ -105,6 +105,7 @@ function deleteTask(e, li) {
   lastRemove = tasks[taskNum];
   tasks.splice(taskNum, 1);
   counter.innerText = tasks.length;
+  count -= 1;
   setData();
   li.remove();
 }
@@ -137,7 +138,7 @@ function removeAll() {
   setData();
 }
 
-function checkPercents() {
+function checkPercentage() {
   let donedTasks = 0;
   for (let task of tasks) {
     if (task.isDone) donedTasks++;
@@ -201,7 +202,7 @@ sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
 undoButton.addEventListener("click", undo);
 removeAllButton.addEventListener("click", removeAll);
-percentDone.addEventListener("click", checkPercents);
+percentDone.addEventListener("click", checkPercentage);
 videoOpen.addEventListener("click", videoOpener);
 // `searchBar.addEventListener("keyup", searchTask);
 
