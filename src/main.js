@@ -60,13 +60,9 @@ function createListItem(item) {
   let deleteButton = newElem("button", "delete-button");
   let deleteIcon = newElem("i", "fas fa-trash");
   deleteButton.append(deleteIcon);
-  deleteButton.addEventListener(
-    "click",
-    function (e) {
-      deleteTask(e);
-    },
-    true
-  );
+  deleteButton.addEventListener("click", function (e) {
+    deleteTask(e, li);
+  });
   taskText.innerText = item.text;
   taskPriority.innerText = item.priority;
   taskDate.innerText = item.date;
@@ -103,20 +99,14 @@ function setData() {
   localStorage.setItem("my-todo", JSON.stringify(tasks));
 }
 
-function deleteTask(e) {
-  const target = e.target;
-  if (target.className != "delete-button") return;
-  else {
-    let t = target.closest("li");
-    let taskDeletedDate = t.getElementsByClassName("todo-created-at");
-    let date = taskDeletedDate[0].innerText;
-    let taskNum = taskFinder(date);
-    lastRemove = tasks[taskNum];
-    tasks.splice(taskNum, 1);
-    counter.innerText = tasks.length;
-    setData();
-    t.remove();
-  }
+function deleteTask(e, li) {
+  let taskDeletedDate = li.getElementsByClassName("todo-created-at");
+  let taskNum = taskFinder(taskDeletedDate);
+  lastRemove = tasks[taskNum];
+  tasks.splice(taskNum, 1);
+  counter.innerText = tasks.length;
+  setData();
+  li.remove();
 }
 
 function navbar() {
