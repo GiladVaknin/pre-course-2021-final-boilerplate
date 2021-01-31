@@ -101,7 +101,8 @@ function setData() {
 
 function deleteTask(e, li) {
   let taskDeletedDate = li.getElementsByClassName("todo-created-at");
-  let taskNum = taskFinder(taskDeletedDate);
+  let date = taskDeletedDate[0].innerText;
+  let taskNum = taskFinder(date);
   lastRemove = tasks[taskNum];
   tasks.splice(taskNum, 1);
   counter.innerText = tasks.length;
