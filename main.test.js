@@ -67,7 +67,7 @@ describe("Gilad To-Do test", () => {
     ).jsonValue();
     expect(currentCounter).toBe("0");
   });
-  test("Counter 0 after RemoveAll", async () => {
+  test("Counter zeroed after RemoveAll", async () => {
     await page.goto(path, { waitUntil: "networkidle0" });
 
     await page.waitForSelector("#counter");
