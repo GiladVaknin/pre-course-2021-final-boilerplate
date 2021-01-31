@@ -146,12 +146,19 @@ function removeAll() {
   setData();
 }
 
-function searchTask() {
-  let search = document.createElement("input");
-  search.setAttribute("type", "search");
-  search = "dog";
-  search.list();
-  console.log(search);
+function checkPercents() {
+  let donedTasks = 0;
+  for (let task of tasks) {
+    if (task.isDone) donedTasks++;
+  }
+  let percents = Math.floor((donedTasks / tasks.length) * 100);
+  if (percents >= 0) {
+    alert("Hi champ, you finished " + percents + "% of your tasks.");
+  } else {
+    alert(
+      "Hi champ, you have no tasks yet..\n Lets add some and start working!"
+    );
+  }
 }
 
 let tasks = [];
@@ -165,6 +172,8 @@ const nav = document.getElementById("social-media-bar");
 const navbarButton = document.getElementById("navbarButton");
 const undoButton = document.getElementById("undo-button");
 const removeAllButton = document.getElementById("removeAll-button");
+const percentDone = document.getElementById("user-check");
+// const searchBar = document.getElementById("searchBar");
 let counter = document.getElementById("counter");
 
 let lastRemove;
@@ -174,5 +183,7 @@ sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
 undoButton.addEventListener("click", undo);
 removeAllButton.addEventListener("click", removeAll);
+percentDone.addEventListener("click", checkPercents);
+// `searchBar.addEventListener("keyup", searchTask);
 
 getData();

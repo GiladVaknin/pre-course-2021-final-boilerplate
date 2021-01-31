@@ -23,10 +23,15 @@ body {
 }
 
 #title {
-  font-size: 13vh;
+  font-size: 12vh;
   font-family: "Coda Caption", sans-serif;
-  /* top: 5vh; */
   margin-top: 0;
+}
+#sub-title {
+  font-size: 4vh;
+  /* text-align: center; */
+  font-family: "Coda Caption", sans-serif;
+  padding-top: 0;
 }
 #priority-selector {
   font-family: "Coda Caption", sans-serif;
@@ -79,11 +84,15 @@ h2 i {
 #option {
   text-align: center;
   align-items: center;
+  margin: auto;
 }
 .navBar {
   position: fixed;
   right: 1vw;
   font-size: 10vh;
+}
+.navBar:hover {
+  color: white;
 }
 #social-media-bar {
   font-size: 4vh;
@@ -99,15 +108,22 @@ h2 i {
   bottom: 0;
   font-size: 8vh;
 }
+
+#undo-button:hover {
+  color: orange;
+}
+
 #removeAll-button {
   position: fixed;
   left: 1vw;
   bottom: 10vh;
   font-size: 8vh;
 }
-/* #social-media-bar i:hover { */
-/* color: #b41313; */
-/* } */
+
+#removeAll-button:hover {
+  color: darkslategrey;
+}
+
 #githubIcon:hover {
   color: blueviolet;
 }
@@ -116,4 +132,62 @@ h2 i {
 }
 #mailIcon:hover {
   color: red;
+}
+#percentDone {
+  background-color: black;
+  width: 0;
+}
+#user-check {
+  position: fixed;
+  font-size: 8vh;
+  color: black;
+  left: 1vw;
+  bottom: 20vh;
+}
+
+#user-check :hover {
+  color: darkred;
+}
+
+#motivation-charger {
+  position: fixed;
+  font-size: 8vh;
+  color: black;
+  left: 1vw;
+  bottom: 32vh;
+}
+#motivation-charger i {
+  color: black;
+}
+#motivation-charger :hover {
+  color: chartreuse;
+}
+
+@media screen and (max-width: 830px) {
+  #title {
+    font-size: 8vh;
+  }
+  .navBar {
+    font-size: 6vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  #title {
+    font-size: 6vh;
+  }
+  .navBar {
+    font-size: 4vh;
+  }
+}
+@media screen and (max-width: 400px) {
+  #title {
+    font-size: 6vh;
+  }
+  .navBar {
+    font-size: 4vh;
+    margin-top: 6vh;
+  }
+  #social-media-bar {
+    font-size: 2vh;
+  }
 }
