@@ -7,6 +7,7 @@ The app passed 7 tests that are included in this repository.
 The project will let the user to make his own Todo List ,mark the tasks as done/undone and follow his process .
 
 Preview:
+
 ![Add todo task](./readme-files/screenVideo.gif)
 
 ## Bonuses and features
