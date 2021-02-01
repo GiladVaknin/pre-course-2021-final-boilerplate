@@ -193,7 +193,6 @@ const undoButton = document.getElementById("undo-button");
 const removeAllButton = document.getElementById("removeAll-button");
 const percentDone = document.getElementById("user-check");
 const videoOpen = document.getElementById("motivation-charger");
-// const searchBar = document.getElementById("searchBar");
 let counter = document.getElementById("counter");
 
 let lastRemove;
@@ -205,6 +204,5 @@ undoButton.addEventListener("click", undo);
 removeAllButton.addEventListener("click", removeAll);
 percentDone.addEventListener("click", checkPercentage);
 videoOpen.addEventListener("click", videoOpener);
-// `searchBar.addEventListener("keyup", searchTask);
 
 getData();

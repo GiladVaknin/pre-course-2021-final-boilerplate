@@ -11,11 +11,13 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+
 #view-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #view-section li {
   box-sizing: content-box;
   list-style: none;
@@ -26,6 +28,7 @@ body {
   z-index: 2;
   width: 100%;
 }
+
 #view-section li div {
   font-weight: bolder;
   color: black;
@@ -33,30 +36,43 @@ body {
 
 #title {
   font-size: 12vh;
-  font-family: "Coda Caption", sans-serif;
+  font-family: "Permanent Marker", cursive;
   margin-top: 0;
   margin-bottom: 0;
 }
+
 #sub-title {
   font-size: 4vh;
-  /* text-align: center; */
   font-family: "Coda Caption", sans-serif;
 }
+
 #priority-selector {
   font-family: "Coda Caption", sans-serif;
-  text-align: center;
   align-items: center;
+  height: 30px;
 }
+
 #add-button {
   font-family: "Coda Caption", sans-serif;
+  height: 30px;
 }
+
 #sort-button {
   font-family: "Coda Caption", sans-serif;
+  font-weight: bold;
+  height: 30px;
+}
+
+#text-input {
+  font-family: "Coda Caption", sans-serif;
+  height: 25px;
+  width: 300px;
 }
 
 #list {
   width: 100%;
 }
+
 .todo-container {
   display: inline-flex;
   margin-left: auto;
@@ -69,6 +85,7 @@ body {
 h2 i {
   font-size: 40px;
 }
+
 .done-button {
   color: black;
   background-color: #fede00;
@@ -77,6 +94,7 @@ h2 i {
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .delete-button {
   color: black;
   background-color: #fede00;
@@ -85,34 +103,33 @@ h2 i {
   margin-left: 10px;
   margin-right: 10px;
 }
-.todo-priority {
-  /* border: 2px solid #fede00;
-  border-radius: 80%;
-  text-align: center;
-  align-items: center;
-  box-sizing: content-box; */
-}
+
 #option {
   text-align: center;
   align-items: center;
   margin: auto;
 }
+
 .navBar {
   position: fixed;
   right: 1vw;
   font-size: 10vh;
 }
+
 .navBar:hover {
   color: white;
 }
+
 #social-media-bar {
   font-size: 5vh;
   list-style: none;
 }
+
 #social-media-bar i {
   color: black;
   z-index: 10;
 }
+
 #undo-button {
   position: fixed;
   left: 1vw;
@@ -138,16 +155,20 @@ h2 i {
 #githubIcon:hover {
   color: blueviolet;
 }
+
 #fbIcon:hover {
   color: blue;
 }
+
 #mailIcon:hover {
   color: red;
 }
+
 #percentDone {
   background-color: black;
   width: 0;
 }
+
 #user-check {
   position: fixed;
   font-size: 8vh;
@@ -167,12 +188,15 @@ h2 i {
   left: 1vw;
   bottom: 32vh;
 }
+
 #motivation-charger i {
   color: black;
 }
+
 #motivation-charger :hover {
   color: chartreuse;
 }
+
 #video {
   width: 80%;
   height: 80%;
@@ -183,6 +207,7 @@ h2 i {
   /* align-items: center; */
   bottom: 10vh;
 }
+
 #close-video {
   padding-top: 2px;
   margin-right: 0;
@@ -202,6 +227,7 @@ h2 i {
     font-size: 6vh;
   }
 }
+
 @media screen and (max-width: 500px) {
   #title {
     font-size: 6vh;
@@ -210,6 +236,7 @@ h2 i {
     font-size: 4vh;
   }
 }
+
 @media screen and (max-width: 400px) {
   #title {
     font-size: 6vh;
