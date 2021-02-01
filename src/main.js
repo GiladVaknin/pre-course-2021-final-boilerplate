@@ -187,6 +187,7 @@ function videoOpener() {
   });
 }
 
+//This function opens the help div with explanation on the web buttons.
 function userHelp() {
   explanation.hidden = false;
   let closeIcon = document.getElementById("close-icon");
