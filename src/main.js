@@ -128,7 +128,7 @@ function navbar() {
 function undo() {
   createListItem(lastRemove);
   tasks.push(lastRemove);
-  counter.innerText = count;
+  counter.innerText = ++count;
   setData();
 }
 
@@ -216,6 +216,7 @@ explanation.hidden = true;
 
 let lastRemove;
 nav.hidden = true;
+
 navbarButton.addEventListener("click", navbar);
 sortButton.addEventListener("click", sort);
 addButton.addEventListener("click", addTask);
