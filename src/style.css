@@ -248,6 +248,13 @@ h2 i {
   font-size: 15px;
 }
 
+#functions {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  text-align: center;
+}
+
 @media screen and (max-width: 830px) {
   #title {
     font-size: 8vh;
