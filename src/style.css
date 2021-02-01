@@ -69,6 +69,17 @@ body {
   width: 300px;
 }
 
+#help-button {
+  position: fixed;
+  left: 1vw;
+  top: 1vh;
+  font-size: 8vh;
+}
+
+#help-button:hover {
+  color: white;
+}
+
 #list {
   width: 100%;
 }
@@ -113,7 +124,7 @@ h2 i {
 .navBar {
   position: fixed;
   right: 1vw;
-  font-size: 10vh;
+  font-size: 8vh;
 }
 
 .navBar:hover {
@@ -217,6 +228,24 @@ h2 i {
   width: 90%;
   height: 90%;
   align-items: center;
+}
+
+#explanation {
+  color: #fede00;
+  font-size: 12px;
+  z-index: 10;
+  background-color: black;
+  width: 25vw;
+  height: 30vh;
+  position: fixed;
+  top: 12vh;
+  left: 1vw;
+  border: 1px solid #fede00;
+  border-radius: 5%;
+}
+
+#explanation #close-icon {
+  font-size: 15px;
 }
 
 @media screen and (max-width: 830px) {

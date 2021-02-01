@@ -1,3 +1,4 @@
+//This function add a task to the tasks array.
 function addTask() {
   let inputText = document.getElementById("text-input");
   let prioritySelector = document.getElementById("priority-selector");
@@ -17,12 +18,15 @@ function addTask() {
   setData();
 }
 
+//This function creates a new element in the document of  the type that received and with
+//the className that received.
 function newElem(type, className) {
   let elem = document.createElement(type);
   if (className) elem.className = className;
   return elem;
 }
 
+// This function checks if the task is done and sets the opposite in "click".
 function isDone(doneButton) {
   let t = doneButton.closest("li");
   let taskDeletedDate = t.getElementsByClassName("todo-created-at");
@@ -41,6 +45,7 @@ function isDone(doneButton) {
   setData();
 }
 
+// This function sort the tasks by the priority of them.
 function sort() {
   const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
   addedTasks.innerHTML = "";
@@ -49,6 +54,7 @@ function sort() {
   });
 }
 
+// This function gets an item (task) and creates an html element with its data.
 function createListItem(item) {
   let li = newElem("li");
   let taskSpan = newElem("span", "task-span");
@@ -83,6 +89,7 @@ function createListItem(item) {
   addedTasks.append(li);
 }
 
+// This function gets the data from the local storage and add it to the web.
 function getData() {
   let tasksString = localStorage.getItem("my-todo");
   if (tasksString) {
@@ -95,10 +102,12 @@ function getData() {
   }
 }
 
+// This function sets the current data to the local storage.
 function setData() {
   localStorage.setItem("my-todo", JSON.stringify(tasks));
 }
 
+// This function delete a task from the array and the "li" element that present it in the html.
 function deleteTask(e, li) {
   let taskDeletedDate = li.getElementsByClassName("todo-created-at");
   let date = taskDeletedDate[0].innerText;
@@ -111,10 +120,11 @@ function deleteTask(e, li) {
   li.remove();
 }
 
+// This function shows and hide the  contact options nav-bar.
 function navbar() {
   nav.hidden = !nav.hidden;
 }
-
+// This function add the last task that was deleted.
 function undo() {
   createListItem(lastRemove);
   tasks.push(lastRemove);
@@ -122,6 +132,7 @@ function undo() {
   setData();
 }
 
+// This function gets a date (string) and find the task place in the array.
 function taskFinder(date) {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].date === date) {
@@ -131,6 +142,7 @@ function taskFinder(date) {
   return;
 }
 
+// This function removes all the tasks list from the array,html and local storage.
 function removeAll() {
   addedTasks.innerHTML = "";
   tasks = [];
@@ -139,6 +151,7 @@ function removeAll() {
   setData();
 }
 
+// This function checks the percent of the tasks that are done.
 function checkPercentage() {
   let donedTasks = 0;
   for (let task of tasks) {
@@ -154,6 +167,7 @@ function checkPercentage() {
   }
 }
 
+// This function creates an iframe element with motivational video and pop it to the screen.
 function videoOpener() {
   addedTasks.hidden = true;
   let videoSpan = newElem("span", "video");
@@ -164,7 +178,6 @@ function videoOpener() {
   video.setAttribute("src", "https://www.youtube.com/embed/V3WrCx3mwNo");
   video.style.width = "640px";
   video.style.height = "480px";
-  video.setAttribute("draggable", "true");
   videoSpan.appendChild(video);
   videoSpan.append(closeVideoButton);
   document.body.append(videoSpan);
@@ -172,12 +185,14 @@ function videoOpener() {
     videoSpan.remove();
     addedTasks.hidden = false;
   });
-  video.addEventListener("dragend", fullScreen);
 }
 
-function fullScreen() {
-  this.style.height = "700px";
-  this.style.width = "900px";
+function userHelp() {
+  explanation.hidden = false;
+  let closeIcon = document.getElementById("close-icon");
+  closeIcon.addEventListener("click", () => {
+    explanation.hidden = true;
+  });
 }
 
 let tasks = [];
@@ -194,6 +209,9 @@ const removeAllButton = document.getElementById("removeAll-button");
 const percentDone = document.getElementById("user-check");
 const videoOpen = document.getElementById("motivation-charger");
 let counter = document.getElementById("counter");
+const helpButton = document.getElementById("help-button");
+const explanation = document.getElementById("explanation");
+explanation.hidden = true;
 
 let lastRemove;
 nav.hidden = true;
@@ -204,5 +222,6 @@ undoButton.addEventListener("click", undo);
 removeAllButton.addEventListener("click", removeAll);
 percentDone.addEventListener("click", checkPercentage);
 videoOpen.addEventListener("click", videoOpener);
+helpButton.addEventListener("click", userHelp);
 
 getData();
