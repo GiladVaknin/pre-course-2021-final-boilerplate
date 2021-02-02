@@ -12,7 +12,7 @@ Preview:
 
 ## Bonuses and features
 
-- Navbar with options to contact me.
+- Navbar with options to contact me.(link to my facebook and gitHub accounts and an option to send me an email).
 - Help button with explanation of all of the buttons in the web.
 - Remove-All button
 - Delete a todo
