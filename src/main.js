@@ -16,6 +16,7 @@ function addTask() {
   inputText.value = "";
   counter.innerText = ++count;
   setData();
+  setDataJSONBIN();
 }
 
 //This function creates a new element in the document of  the type that received and with
@@ -43,6 +44,7 @@ function isDone(doneButton) {
   }
   tasks[taskNumber].isDone = !tasks[taskNumber].isDone;
   setData();
+  setDataJSONBIN();
 }
 
 // This function sort the tasks by the priority of them.
@@ -90,17 +92,17 @@ function createListItem(item) {
 }
 
 // This function gets the data from the local storage and add it to the web.
-function getData() {
-  let tasksString = localStorage.getItem("my-todo");
-  if (tasksString) {
-    tasks = JSON.parse(tasksString);
-    tasks.forEach((item) => {
-      createListItem(item);
-    });
-    count = tasks.length;
-    counter.innerText = count;
-  }
-}
+// function getData() {
+//   let tasksString = localStorage.getItem("my-todo");
+//   if (tasksString) {
+//     tasks = JSON.parse(tasksString);
+//     tasks.forEach((item) => {
+//       createListItem(item);
+//     });
+//     count = tasks.length;
+//     counter.innerText = count;
+//   }
+// }
 
 // This function sets the current data to the local storage.
 function setData() {
@@ -130,6 +132,7 @@ function undo() {
   tasks.push(lastRemove);
   counter.innerText = ++count;
   setData();
+  setDataJSONBIN();
 }
 
 // This function gets a date (string) and find the task place in the array.
@@ -149,6 +152,7 @@ function removeAll() {
   count = 0;
   counter.innerText = 0;
   setData();
+  setDataJSONBIN();
 }
 
 // This function checks the percent of the tasks that are done.
@@ -196,6 +200,30 @@ function userHelp() {
   });
 }
 
+//This function gets the data from the JSONBIN
+function getDataJSONBIN() {
+  let loadedData = getPersistent(API_KEY);
+  loadedData.then((response) => {
+    let tasksString = response.record;
+    if (tasksString) {
+      tasksString["my-todo"].forEach((item) => {
+        tasks.push(item);
+        createListItem(item);
+      });
+      count = tasks.length;
+      counter.innerText = count;
+    }
+  });
+}
+
+// This function sets the current data to the JSONBIN.
+function setDataJSONBIN() {
+  const promise = setPersistent(API_KEY, tasks);
+  promise.then(() => {
+    return;
+  });
+}
+
 let tasks = [];
 let count = 0;
 
@@ -226,4 +254,5 @@ percentDone.addEventListener("click", checkPercentage);
 videoOpen.addEventListener("click", videoOpener);
 helpButton.addEventListener("click", userHelp);
 
-getData();
+// getData();
+getDataJSONBIN();

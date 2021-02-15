@@ -205,7 +205,7 @@ h2 i {
 }
 
 #motivation-charger :hover {
-  color: chartreuse;
+  color: rgb(207, 130, 15);
 }
 
 #video {
@@ -232,20 +232,21 @@ h2 i {
 
 #explanation {
   color: #fede00;
-  font-size: 12px;
+  font-size: 1vmax;
   z-index: 10;
   background-color: black;
   width: 40vw;
-  height: 50vh;
+  height: auto;
   position: fixed;
   top: 12vh;
   left: 1vw;
   border: 1px solid #fede00;
   border-radius: 5%;
+  box-shadow: 0px 0px 17px #756601;
 }
 
 #explanation #close-icon {
-  font-size: 15px;
+  font-size: 1vmax;
 }
 
 #functions {
