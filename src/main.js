@@ -15,8 +15,11 @@ function addTask() {
 
   inputText.value = "";
   counter.innerText = ++count;
-  setData();
-  setDataJSONBIN();
+
+  AddTaskToLocalJSONBIN(newTask);
+  // setData();
+  // setDataLocalJSONBIN();
+  // setDataJSONBIN();
 }
 
 //This function creates a new element in the document of  the type that received and with
@@ -43,8 +46,9 @@ function isDone(doneButton) {
     doneButton.append(emoji);
   }
   tasks[taskNumber].isDone = !tasks[taskNumber].isDone;
-  setData();
-  setDataJSONBIN();
+  // setData();
+  // setDataJSONBIN();
+  setDataLocalJSONBIN(tasks);
 }
 
 // This function sort the tasks by the priority of them.
@@ -118,7 +122,9 @@ function deleteTask(e, li) {
   tasks.splice(taskNum, 1);
   counter.innerText = tasks.length;
   count -= 1;
-  setData();
+  // setData();
+  // setDataJSONBIN();
+  setDataLocalJSONBIN(tasks);
   li.remove();
 }
 
@@ -217,15 +223,59 @@ function getDataJSONBIN() {
 }
 
 // This function sets the current data to the JSONBIN.
-function setDataJSONBIN() {
-  const promise = setPersistent(API_KEY, tasks);
-  promise.then(() => {
+// function setDataJSONBIN() {
+//   const promise = setPersistent(API_KEY, tasks);
+//   promise.then(() => {
+//     return;
+//   });
+// }
+
+//This function sets the current data to the local JSONBIN.
+function setDataLocalJSONBIN(tasks) {
+  let myTodo = {
+    "my-todo": tasks,
+  };
+  fetch(URL + "/myTodo", {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(myTodo),
+  }).then((response) => {
     return;
   });
 }
 
+function AddTaskToLocalJSONBIN(task) {
+  fetch(URL + "/myTodo", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(task),
+  }).then((response) => {
+    return;
+  });
+}
+
+function getDataFromLocalJSONBIN() {
+  fetch(URL + "/myTodo", {
+    method: "get",
+    headers: { "Content-Type": "application/json" },
+  }).then((response) =>
+    response.json().then((data) => {
+      let savedTasks = data["my-todo"];
+      if (savedTasks) {
+        tasks = savedTasks;
+        tasks.forEach((item) => {
+          createListItem(item);
+        });
+        count = tasks.length;
+        counter.innerText = count;
+      }
+    })
+  );
+}
+
 let tasks = [];
 let count = 0;
+const URL = "http://localhost:3000/b";
 
 const controlSection = document.getElementById("control-section");
 const addButton = document.getElementById("add-button");
@@ -255,4 +305,5 @@ videoOpen.addEventListener("click", videoOpener);
 helpButton.addEventListener("click", userHelp);
 
 // getData();
-getDataJSONBIN();
+// getDataJSONBIN();
+getDataFromLocalJSONBIN();

@@ -23,6 +23,7 @@ async function setPersistent(key, data) {
     headers: {
       "X-MASTER-KEY": key,
       "Content-type": "application/json; charset=UTF-8",
+      // "X-Bin-Versioning": "false",
     },
     body: JSON.stringify({ "my-todo": data }),
   });
