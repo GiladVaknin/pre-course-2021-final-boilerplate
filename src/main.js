@@ -16,9 +16,9 @@ function addTask() {
   inputText.value = "";
   counter.innerText = ++count;
 
-  AddTaskToLocalJSONBIN(newTask);
+  // AddTaskToLocalJSONBIN(newTask);
   // setData();
-  // setDataLocalJSONBIN();
+  setDataLocalJSONBIN();
   // setDataJSONBIN();
 }
 
@@ -235,13 +235,26 @@ function setDataLocalJSONBIN(tasks) {
   let myTodo = {
     "my-todo": tasks,
   };
+  spinnerOn();
   fetch(URL + "/myTodo", {
     method: "put",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(myTodo),
   }).then((response) => {
+    spinnerOff();
     return;
   });
+}
+
+function spinnerOn() {
+  addedTasks.hidden = true;
+  viewSection.append(spinner);
+  spinner.hidden = false;
+}
+
+function spinnerOff() {
+  spinner.hidden = true;
+  addedTasks.hidden = false;
 }
 
 function AddTaskToLocalJSONBIN(task) {
@@ -255,6 +268,7 @@ function AddTaskToLocalJSONBIN(task) {
 }
 
 function getDataFromLocalJSONBIN() {
+  spinnerOn();
   fetch(URL + "/myTodo", {
     method: "get",
     headers: { "Content-Type": "application/json" },
@@ -266,6 +280,7 @@ function getDataFromLocalJSONBIN() {
         tasks.forEach((item) => {
           createListItem(item);
         });
+        spinnerOff();
         count = tasks.length;
         counter.innerText = count;
       }
@@ -277,6 +292,7 @@ let tasks = [];
 let count = 0;
 const URL = "http://localhost:3000/b";
 
+const viewSection = document.getElementById("view-section");
 const controlSection = document.getElementById("control-section");
 const addButton = document.getElementById("add-button");
 const addedTasks = document.getElementById("List");
@@ -290,6 +306,7 @@ const videoOpen = document.getElementById("motivation-charger");
 let counter = document.getElementById("counter");
 const helpButton = document.getElementById("help-button");
 const explanation = document.getElementById("explanation");
+const spinner = newElem("div", "loader");
 explanation.hidden = true;
 
 let lastRemove;
