@@ -39,9 +39,7 @@ app.put("/b/:id", (req, res) => {
 app.get("/b/:id", (req, res) => {
   const id = req.params.id;
   try {
-    console.log(fs.existsSync(`./backend/bins`));
     const binContent = fs.readFileSync(`./backend/bins/myTodo.json`);
-    console.log(binContent);
     res.send(binContent);
   } catch (e) {
     res.status(422).json({ message: "Invalid Record ID" });
